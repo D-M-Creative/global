@@ -1,0 +1,19 @@
+name: Notify Dependent Sites
+on:
+  push:
+    branches: [main]
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger updates in dependent sites
+        run: |
+          sites=("site1-repo-name" "site2-repo-name" "site3-repo-name")
+          for site in "${sites[@]}"; do
+            curl -X POST \
+              -H "Accept: application/vnd.github.v3+json" \
+              -H "Authorization: token ${{ secrets.REPO_ACCESS_TOKEN }}" \
+              https://api.github.com/repos/tom-dandm/${site}/dispatches \
+              -d '{"event_type":"global-module-updated"}'
+          done
