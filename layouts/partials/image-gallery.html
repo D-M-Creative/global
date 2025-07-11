@@ -1,3 +1,15 @@
+{{ $galleryCSS := resources.Get "css/gallery.css" | minify | fingerprint }}
+<link
+	rel="stylesheet"
+	href="{{ $galleryCSS.RelPermalink }}"
+	integrity="{{ $galleryCSS.Data.Integrity }}" />
+
+{{ $galleryJS := resources.Get "js/gallery.js" | minify | fingerprint }}
+<script
+	src="{{ $galleryJS.RelPermalink }}"
+	integrity="{{ $galleryJS.Data.Integrity }}"
+	defer></script>
+
 <div class="gallery-grid">
 	{{ $galleryPage := .Site.GetPage "/gallery" }} {{ if $galleryPage }} {{ $items
 	:= $galleryPage.Resources.Match "*.webp" }} {{ if gt (len $items) 0 }} {{
