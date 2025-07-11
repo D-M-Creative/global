@@ -1,0 +1,49 @@
+<div class="gallery-grid">
+	{{ $galleryPage := .Site.GetPage "/gallery" }} {{ if $galleryPage }} {{ $items
+	:= $galleryPage.Resources.Match "*.webp" }} {{ if gt (len $items) 0 }} {{
+	range $index, $image := $items }} {{ if $image }} {{ $resized := $image.Resize
+	"800x" }} {{ $ratio := div (float $image.Width) (float $image.Height) }}
+
+	<div class="gallery-item" data-index="{{ $index }}" data-ratio="{{ $ratio }}">
+		<img
+			src="{{ $resized.RelPermalink }}"
+			class="img-fluid"
+			alt="{{ .Name }}"
+			loading="lazy"
+			data-bs-toggle="modal"
+			data-bs-target="#galleryModal-{{ $index }}" />
+	</div>
+
+	<!-- Modal -->
+	<div
+		class="modal fade"
+		id="galleryModal-{{ $index }}"
+		tabindex="-1"
+		aria-labelledby="galleryModalLabel-{{ $index }}"
+		aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered modal-lg">
+			<div class="modal-content position-relative">
+				<button
+					type="button"
+					class="btn-close custom-close"
+					data-bs-dismiss="modal"
+					aria-label="Close"></button>
+				<div class="modal-body">
+					<img
+						src="{{ $image.RelPermalink }}"
+						class="img-fluid"
+						alt="{{ .Name }}" />
+				</div>
+			</div>
+		</div>
+	</div>
+	{{ end }} {{ end }} {{ else }}
+	<div class="alert alert-info my-5">
+		No gallery images found. Please add .webp images to the gallery folder.
+	</div>
+	{{ end }} {{ else }}
+	<div class="alert alert-warning my-5">
+		Gallery page not found. Please create a page at "/gallery" with images.
+	</div>
+	{{ end }}
+</div>
