@@ -10,7 +10,7 @@
 	integrity="{{ $galleryJS.Data.Integrity }}"
 	defer></script>
 
-<div class="gallery-grid">
+<div class="gallery-grid test">
 	{{ $galleryPage := .Site.GetPage "/gallery" }} {{ if $galleryPage }} {{ $items
 	:= $galleryPage.Resources.Match "*.webp" }} {{ if gt (len $items) 0 }} {{
 	range $index, $image := $items }} {{ if $image }} {{ $resized := $image.Resize
