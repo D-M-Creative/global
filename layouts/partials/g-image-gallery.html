@@ -15,10 +15,10 @@
 	<div class="container">
 		<div class="gallery-grid">
 			{{ $galleryPage := .Site.GetPage "/gallery" }} {{ if $galleryPage }} {{
-			$items := $galleryPage.Resources.Match "*.webp" }} {{ if gt (len $items) 0
-			}} {{ range $index, $image := $items }} {{ if $image }} {{ $resized :=
-			$image.Resize "800x" }} {{ $ratio := div (float $image.Width) (float
-			$image.Height) }}
+			$items := $galleryPage.Resources.Match "*.{webp,jpg,jpeg,png,gif}" }} {{
+			if gt (len $items) 0 }} {{ range $index, $image := $items }} {{ if $image
+			}} {{ $resized := $image.Resize "800x" }} {{ $ratio := div (float
+			$image.Width) (float $image.Height) }}
 
 			<div
 				class="gallery-item"
