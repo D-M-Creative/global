@@ -40,7 +40,7 @@ document.addEventListener("DOMContentLoaded", () => {
 			3: ["tall", "square", "tall"],
 			4: ["tall", "wide", "tall", "wide"],
 			5: ["tall", "regular", "wide", "tall", "wide"],
-			6: ["tall", "regular", "square", "tall", "regular", "square"],
+			6: ["tall", "regular", "square", "tall", "regular", "wide"],
 			7: ["tall", "regular", "square", "regular", "wide", "regular", "regular"],
 			8: [
 				"tall",
