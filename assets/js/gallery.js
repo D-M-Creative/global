@@ -13,16 +13,26 @@ document.addEventListener("DOMContentLoaded", () => {
 			return;
 		previousCount = count;
 
+		// Clear previous mobile classes
+		items.forEach((item) => {
+			item.classList.remove("mobile-span-2");
+		});
+
 		// Update item count class (e.g., items-4)
 		grid.classList.remove(
 			...[...grid.classList].filter((c) => c.startsWith("items-"))
 		);
 		grid.classList.add(`items-${count}`);
 
-		// Skip applying layout classes on mobile
-		if (window.innerWidth <= 768) return;
+		// Handle mobile layout for odd number of items
+		if (window.innerWidth <= 768) {
+			if (count % 2 !== 0 && items[count - 1]) {
+				items[count - 1].classList.add("mobile-span-2");
+			}
+			return;
+		}
 
-		// Get layout and apply classes
+		// Get layout and apply classes for desktop
 		const layout = getLayout(count);
 		layout.forEach((className, index) => {
 			if (items[index] && className) {

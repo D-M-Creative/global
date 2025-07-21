@@ -69,18 +69,18 @@
 @media (max-width: 768px) {
 	.gallery-grid {
 		grid-template-columns: 1fr 1fr;
-
 		grid-auto-rows: auto;
-
 		gap: 10px;
-
 		padding-top: 20px;
 	}
 
 	.gallery-item {
 		max-height: 200px;
-
 		height: auto;
+	}
+
+	.gallery-item.mobile-span-2 {
+		grid-column: span 2;
 	}
 
 	/* Reset all special classes on mobile */
@@ -92,7 +92,6 @@
 	.gallery-item.banner,
 	.gallery-item.tower {
 		grid-column: span 1;
-
 		grid-row: span 1;
 	}
 }
